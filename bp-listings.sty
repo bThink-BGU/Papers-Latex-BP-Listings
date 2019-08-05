@@ -10,22 +10,16 @@
 % \renewcommand{\ttdefault}{pcr}
 
 %%%%%%%%%%%%%%%%%% OPTIONS %%%%%%%%%%%%%%%
-\newif\if@pnasbabel
-\DeclareOption{babel}{\@pnasbabeltrue}
-
-
-\ProcessOptions
+\newif\if@vbabel
+\DeclareOption{babel}{\@vbabeltrue}
+\newif\if@vbpjs\@vbpjstrue
+\DeclareOption{no-bpjs}{\@vbpjsfalse}
+\newif\if@vbppy\@vbppytrue
+\DeclareOption{no-bppy}{\@vbppyfalse}
+\DeclareOption*{\PackageWarning{bp-listings}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
 %%%%%%%%%%%%%%%%%% END OF OPTIONS  %%%%%%%%%%%%%%%
 
-
-
-%%%%%%%%% FIX BABEL-LISTINGS CONFLICT %%%%%%%%%%%%%%%
-\makeatletter
-\if@pnasbabel
-    \lst@AddToHook{PreInit}{\let\everypar\o@everypar }
-\fi
-\makeatother
-%%%%%%%%%%%%%%%%%% END OF FIX  %%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%% Color %%%%%%%%%%%%%%%
 \definecolor{mediumgray}{rgb}{0.3, 0.4, 0.4}
@@ -36,6 +30,16 @@
 \definecolor{crimson}{rgb}{0.86, 0.8, 0.24}
 \definecolor{magenta}{rgb}{0.77, 0, 0.54}
 %%%%%%%%%%%%%%%%%% End-of Color %%%%%%%%%%%%%%%
+
+
+%%%%%%%%% FIX BABEL-LISTINGS CONFLICT %%%%%%%%%%%%%%%
+\makeatletter
+\if@vbabel
+    \lst@AddToHook{PreInit}{\let\everypar\o@everypar }
+\fi
+\makeatother
+%%%%%%%%%%%%%%%%%% END OF FIX  %%%%%%%%%%%%%%%
+
 
 
 %%%%%%%%%%%%%%%%%% Languages %%%%%%%%%%%%%%%
@@ -69,24 +73,29 @@
   morestring=[b]` % Interpolation strings.
 }
 
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+
+
 %
 % BPjs definition by Achiya Elyasaf
 %
-\lstdefinelanguage[BPjs]{JavaScript}[ECMAScript2015]{JavaScript}{
-  morekeywords=[1]{bp, CTX},
-  morekeywords=[4]{interrupt, block, request, waitFor},
-  morestring=[b]` % Interpolation strings.
-}
+\if@vbpjs
+    \lstdefinelanguage[BPjs]{JavaScript}[ECMAScript2015]{JavaScript}{
+      morekeywords=[1]{bp, CTX},
+      morekeywords=[4]{interrupt, block, request, waitFor},
+      morestring=[b]` % Interpolation strings.
+    }
+    \lstalias[]{BPjs}[BPjs]{JavaScript}
+\fi
 
-\lstdefinelanguage[BPPy]{Python}[]{Python}{
-  morekeywords=[3]{yield},
-  morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, WaitFor},
-  morestring=[b]` % Interpolation strings.
-}
-
-\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
-\lstalias[]{BPjs}[BPjs]{JavaScript}
-\lstalias[]{BPPy}[BPPy]{Python}
+\if@bppy
+    \lstdefinelanguage[BPPy]{Python}[]{Python}{
+      morekeywords=[3]{yield},
+      morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, WaitFor},
+      morestring=[b]` % Interpolation strings.
+    }
+    \lstalias[]{BPPy}[BPPy]{Python}
+\fi
 %%%%%%%%%%%%%%%%%% End-of Languages %%%%%%%%%%%%%%%
 
 
@@ -138,13 +147,18 @@
   language=ES6,
   style=ProgrammingBase
 }
-\lstdefinestyle{BPjs}{
-  language=BPjs,
-  style=ProgrammingBase,
-}
 
-\lstdefinestyle{BPPy}{
-  language=BPPy,
-  style=ProgrammingBase,
-}
+\if@vbpjs
+    \lstdefinestyle{BPjs}{
+      language=BPjs,
+      style=ProgrammingBase,
+    }
+\fi
+
+\if@vbppy
+    \lstdefinestyle{BPPy}{
+      language=BPPy,
+      style=ProgrammingBase,
+    }
+\fi
 %%%%%%%%%%%%%%%%%% End-of Styles %%%%%%%%%%%%%%%
