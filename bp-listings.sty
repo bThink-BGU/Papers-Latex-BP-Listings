@@ -12,10 +12,10 @@
 %%%%%%%%%%%%%%%%%% OPTIONS %%%%%%%%%%%%%%%
 \newif\if@vbabel
 \DeclareOption{babel}{\@vbabeltrue}
-\newif\if@vbpjs\@vbpjstrue
-\DeclareOption{no-bpjs}{\@vbpjsfalse}
-\newif\if@vbppy\@vbppytrue
-\DeclareOption{no-bppy}{\@vbppyfalse}
+\newif\ifincludebpjs\includebpjstrue
+\DeclareOption{nobpjs}{\includebpjsfalse}
+\newif\ifincludebppy\includebppytrue
+\DeclareOption{nobppy}{\includebppyfalse}
 \DeclareOption*{\PackageWarning{bp-listings}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 %%%%%%%%%%%%%%%%%% END OF OPTIONS  %%%%%%%%%%%%%%%
@@ -79,22 +79,22 @@
 %
 % BPjs definition by Achiya Elyasaf
 %
-\if@vbpjs
-    \lstdefinelanguage[BPjs]{JavaScript}[ECMAScript2015]{JavaScript}{
-      morekeywords=[1]{bp, CTX},
-      morekeywords=[4]{interrupt, block, request, waitFor},
-      morestring=[b]` % Interpolation strings.
-    }
-    \lstalias[]{BPjs}[BPjs]{JavaScript}
+\ifincludebpjs
+\lstdefinelanguage[BPjs]{JavaScript}[ECMAScript2015]{JavaScript}{
+  morekeywords=[1]{bp, CTX},
+  morekeywords=[4]{interrupt, block, request, waitFor},
+  morestring=[b]` % Interpolation strings.
+}
+\lstalias[]{BPjs}[BPjs]{JavaScript}
 \fi
 
-\if@bppy
-    \lstdefinelanguage[BPPy]{Python}[]{Python}{
-      morekeywords=[3]{yield},
-      morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, WaitFor},
-      morestring=[b]` % Interpolation strings.
-    }
-    \lstalias[]{BPPy}[BPPy]{Python}
+\ifincludebppy
+\lstdefinelanguage[BPPy]{Python}[]{Python}{
+  morekeywords=[3]{yield},
+  morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, WaitFor},
+  morestring=[b]` % Interpolation strings.
+}
+\lstalias[]{BPPy}[BPPy]{Python}
 \fi
 %%%%%%%%%%%%%%%%%% End-of Languages %%%%%%%%%%%%%%%
 
@@ -148,17 +148,19 @@
   style=ProgrammingBase
 }
 
-\if@vbpjs
-    \lstdefinestyle{BPjs}{
-      language=BPjs,
-      style=ProgrammingBase,
-    }
+\ifincludebpjs
+\lstdefinestyle{BPjs}{
+  language=BPjs,
+  style=ProgrammingBase,
+}
 \fi
 
-\if@vbppy
-    \lstdefinestyle{BPPy}{
-      language=BPPy,
-      style=ProgrammingBase,
-    }
+\ifincludebppy
+\lstdefinestyle{BPPy}{
+  language=BPPy,
+  style=ProgrammingBase,
+}
 \fi
 %%%%%%%%%%%%%%%%%% End-of Styles %%%%%%%%%%%%%%%
+
+\endinput
