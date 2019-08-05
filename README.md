@@ -1,2 +1,2 @@
-# Papers-Latex-BPjsListings
-Latex package for writing BPjs listings snippets
+# Papers-Latex-BP-Listings
+Latex package for adding BP languages to the listings package
