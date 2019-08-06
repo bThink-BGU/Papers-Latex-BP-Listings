@@ -1,6 +1,6 @@
 # BP listings
 
-[![GitHub license](https://img.shields.io/github/license/bThink-BGU/Papers-Latex-BP-Listings)](https://github.com/bThink-BGU/Papers-Latex-BP-Listings/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-LLPL--1.3c-blue)](https://github.com/bThink-BGU/Papers-Latex-BP-Listings/blob/master/LICENSE)
 ![GitHub release](https://img.shields.io/github/release/bThink-BGU/Papers-Latex-BP-Listings)
 
 This is a LaTeX package for adding BP languages and styles to the listings package.
