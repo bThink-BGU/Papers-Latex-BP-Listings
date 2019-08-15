@@ -25,6 +25,19 @@ Load the package with
 Do not load the listings package, bp-listings will do that for you.
 
 ### Package options
+#### nobpjs
+If you do not wish to load the BPjs language, you can use the *nobpjs* flag:
+```latex
+\usepackage[nobpjs]{bp-listings}
+```
+
+#### nobppy
+If you do not wish to load the BPPy language, you can use the *nobppy* flag:
+```latex
+\usepackage[nobppy]{bp-listings}
+```
+
+#### babel
 The *listings* package is incompatibile with the *babel* package when writing right-to-left languages.
 If you get some strange behaviors and you use babel - try loading the bp-listings package with the *babel* option:
 ```latex
