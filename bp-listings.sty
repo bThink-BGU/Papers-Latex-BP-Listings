@@ -12,13 +12,13 @@
 % See http://www.latex-project.org/lppl.txt                               %
 %                                                                         %
 % Version 1.0                                                             %
-% August 6, 2019                                                          %
+% November 16, 2021                                                       %
 %                                                                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesPackage{bp-listings}[2019/05/17 v1.0 Some LaTeX macros for adding BP languages to listings.]
+\ProvidesPackage{bp-listings}[2021/11/16 v1.1 Some LaTeX macros for adding BP languages to listings.]
 
 \RequirePackage{listings}
 % \RequirePackage[utf8x]{inputenc} %(for extendedchars option)
@@ -110,7 +110,7 @@
 \ifincludebppy
 \lstdefinelanguage[BPPy]{Python}[]{Python}{
   morekeywords=[3]{yield},
-  morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, WaitFor},
+  morekeywords=[4]{interrupt, block, request, waitFor, Block, Request, mustFinish},
   morestring=[b]` % Interpolation strings.
 }
 \lstalias[]{BPPy}[BPPy]{Python}
