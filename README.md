@@ -120,3 +120,6 @@ def interleave():
 	
 \end{document}
 ```
+
+## Change Log
+2021-11  Added support for liveness mustFinish idiom in BPPy.
